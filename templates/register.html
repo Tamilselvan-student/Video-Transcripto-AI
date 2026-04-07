@@ -1,0 +1,100 @@
+<!-- templates/register.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register - Video Transcripto</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <!-- ✅ Add Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script src="{{ url_for('static', filename='main.js') }}" defer></script>
+
+</head>
+<body>
+  <video autoplay muted loop id="bgVideo">
+  <source src="{{ url_for('static', filename='background.mp4') }}" type="video/mp4">
+  Your browser does not support HTML5 video.
+</video>
+{% include 'header.html' %}
+<script src="{{ url_for('static', filename='main.js') }}" defer></script>
+
+  
+  <div class="login-container">
+    <h1 class="main-title white-text">VIDEO TRANSCRIPTO</h1>
+
+    <form class="login-box" method="POST" action="/register">
+      <h2>Create Account</h2>
+
+      <input type="text" name="username" placeholder="Username" class="login-input" required />
+      <input type="email" name="email" placeholder="Email" class="login-input" required />
+
+    <!-- Password Field -->
+<div class="input-with-icon">
+  <input type="password" name="password" id="password" placeholder="New Password" class="login-input" required oninput="checkStrength(this.value)" />
+  <i class="fas fa-eye toggle-password" onclick="toggleVisibility('password', this)"></i>
+</div>
+<div id="strengthText" class="strength-indicator" style="display: none;"></div>
+<!-- Confirm Password Field -->
+
+<div class="input-with-icon">
+  <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password" class="login-input" required />
+  <i class="fas fa-eye toggle-password" onclick="toggleVisibility('confirm_password', this)"></i>
+</div>
+
+      <button type="submit" class="veed-button">Register</button>
+
+      {% if error %}
+        <p style="color: red; font-size: 0.9rem;">{{ error }}</p>
+      {% endif %}
+
+      <p style="text-align: center; margin-top: 15px;">
+       
+
+      </p>
+    </form>
+  </div>
+
+<script>
+  function toggleVisibility(id, icon) {
+    const field = document.getElementById(id);
+    const isHidden = field.type === "password";
+    field.type = isHidden ? "text" : "password";
+    icon.classList.toggle("fa-eye");
+    icon.classList.toggle("fa-eye-slash");
+  }
+
+  function checkStrength(password) {
+    const text = document.getElementById("strengthText");
+
+    if (!password) {
+      text.style.display = "none";  // ⛔ hide when field is empty
+      return;
+    }
+
+    text.style.display = "block";   // ✅ show when user starts typing
+
+    let strength = "Weak";
+    const hasUpper = /[A-Z]/.test(password);
+    const hasNum = /\d/.test(password);
+    const hasSymbol = /[^A-Za-z0-9]/.test(password);
+
+    if (password.length >= 8 && hasUpper && hasNum && hasSymbol) {
+      strength = "Strong";
+    } else if (password.length >= 6 && (hasUpper || hasNum)) {
+      strength = "Medium";
+    }
+
+    text.textContent = "Strength: " + strength;
+    text.style.color = strength === "Strong" ? "limegreen" :
+                       strength === "Medium" ? "orange" : "red";
+  }
+</script>
+  <!-- Footer -->
+  <footer>
+    © 2025 Video Transcripto — by Code Drifters
+  </footer>
+
+</body>
+</html>

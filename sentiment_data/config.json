@@ -1,0 +1,6 @@
+{
+  "positive": 0.3,
+  "neutral_upper": 0.2,
+  "neutral_lower": -0.2,
+  "negative": -0.3
+}

@@ -1,0 +1,59 @@
+<!-- templates/login.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - Video Transcripto</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <script src="{{ url_for('static', filename='main.js') }}" defer></script>
+
+</head>
+
+<body>
+  <video autoplay muted loop id="bgVideo">
+  <source src="{{ url_for('static', filename='background.mp4') }}" type="video/mp4">
+  Your browser does not support HTML5 video.
+</video>
+<!-- Shared Header -->
+{% include 'header.html' %}
+<script src="{{ url_for('static', filename='main.js') }}" defer></script>
+
+  <div class="login-container">
+    <!-- Main Title -->
+    
+
+    <!-- Login Form -->
+    <form class="login-box" method="POST" action="/">
+      <h2>Sign In</h2>
+
+      <input type="text" name="username" placeholder="Username" class="login-input" required />
+      <input type="password" name="password" placeholder="Password" class="login-input" required />
+
+      <!-- Forgot Password Link -->
+<p class="forgot-link">
+  <a href="#" class="alt-button">Forgot Password?</a>
+</p>
+
+      <!-- Submit Button -->
+      <button type="submit" class="veed-button">Sign In</button>
+
+      <!-- Show Error Message If Login Fails -->
+      {% if error %}
+        <p style="color: red; font-size: 0.9rem;">{{ error }}</p>
+      {% endif %}
+
+      <!-- Register Link Styled as Button -->
+      <p style="margin-top: 15px;">
+       <a href="/register" class="alt-button">Don't have an account? Register</a>
+
+      </p>
+    </form>
+  </div>
+  <!-- Footer -->
+  <footer>
+    © 2025 Video Transcripto — by Code Drifters
+  </footer>
+
+</body>
+</html>

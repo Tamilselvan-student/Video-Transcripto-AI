@@ -1,0 +1,11 @@
+venv/
+uploads/
+__pycache__/
+*.pyc
+users.json
+*.mp4
+*.mp3
+*.srt
+*.vtt
+sentiment_data/sentiment.json
+.env

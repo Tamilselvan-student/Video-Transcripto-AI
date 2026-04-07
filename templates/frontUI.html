@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Video Transcripto</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <script src="{{ url_for('static', filename='main.js') }}" defer></script>
+  <!-- Font Awesome for user icon -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</head>
+<body>
+  <!-- Shared Header -->
+{% include 'header.html' %}
+
+<video autoplay muted loop id="bgVideo">
+  <source src="{{ url_for('static', filename='background.mp4') }}" type="video/mp4">
+</video>
+
+<!-- 🔽 Insert here -->
+<section class="hero-section">
+  <h2 class="hero-title">
+    Best AI video Tool for
+    <span id="rotating-word">educators</span>
+  </h2>
+  <p class="hero-subtext">
+    Our AI-powered subtitle analyzer breaks down any video into its emotional and linguistic essence.
+It automatically extracts key nouns, performs deep subtitle analysis, detects scene-level sentiment, and displays an interactive video preview with subtitle overlays—all in one seamless experience.
+  </p>
+  
+  <h3>"Understand your video like never before."</h3>
+  <h3>“Scene-by-scene emotion and language insights from your subtitles.”</h3>
+  <h3>“From subtitles to insights — unlock the language of your video.”</h3>
+</section>
+
+  
+
+<!-- ⬆️ Start of main content -->
+<div class="main">
+  <!-- Title -->
+
+  <!-- Upload Section -->
+  <div class="upload-section">
+  <div class="drop-zone-veed" id="dropZone">
+    <p><strong>Click or drag a video file here to upload</strong></p>
+    <p class="upload-note">Supported: .mp4, .mkv, .mov | Max 100MB</p>
+    <input id="fileInput" type="file" accept="video/*" class="hidden" />
+  </div>
+  <div id="fileInfo" class="file-info"></div>
+  <button id="transcribeBtn" disabled class="transcribe-button">Generate Subtitles →</button>
+  <!-- Progress Bar Container -->
+  <div id="progressBarContainer" class="progress-container hidden">
+    <div class="progress-bar" id="progressBar"></div>
+    <div class="progress-text" id="progressText">0%</div>
+  </div>
+</div>
+</div> <!-- ❌ END .main before flex layout -->
+
+<!-- 📦 FLEX LAYOUT: Transcript + Sentiment -->
+<div class="row-box-container">
+
+  <!-- 📝 Transcript Box -->
+  <div class="glass-box-section">
+    <h3 class="transcript-title centered-title">📝 Transcript</h3>
+    <div class="transcript-box" id="transcriptBox">
+      <p class="placeholder-text" id="transcriptPlaceholder">Output will be displayed here after uploading and processing the video.</p>
+
+      <!-- Transcript content -->
+    </div>
+
+    <!-- ⬇ Download Button -->
+    <div class="dropdown-container center-download">
+      <button class="veed-button" id="toggleDownloadDropdown">⬇ Download Transcript</button>
+      <div class="dropdown-options hidden" id="downloadOptions">
+        <a href="#" id="downloadSrt" class="download-option" download="subtitles.srt">.SRT</a>
+        <a href="#" id="downloadTxt" class="download-option" download="transcript.txt">.TXT</a>
+        <a href="#" id="downloadDoc" class="download-option" download="transcript.doc">.DOC</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 📊 Sentiment Box -->
+  <div class="glass-box-section">
+    <h3 class="transcript-title centered-title">📊 Sentiment Analysis</h3>
+    <div class="sentiment-box" id="sentimentBoxInner">
+      <table id="sentimentTable" class="sentiment-table">
+        <thead>
+          <tr>
+            <th>Minute</th>
+            <th>Dialogues</th>
+            <th>Sentiment</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        <tbody id="sentimentBody">
+          <tr id="sentimentPlaceholder">
+             <td colspan="4" style="text-align:center; color:#ccc;">Output will be displayed here after uploading and processing the video.</td>
+          </tr>
+          <!-- Rows from JS -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- 🎭 Facial Expression + 🎥 Video Preview -->
+<div class="row-box-container">
+  <!-- 🎭 Facial Expression Table -->
+  <div class="glass-box-section">
+    <h3 class="transcript-title centered-title">🎭 Facial Expression-Based Sentiment Table</h3>
+    <div class="transcript-box" id="expressionTableBox">
+      <table class="sentiment-table">
+        <thead>
+          <tr>
+            <th>Start</th>
+            <th>End</th>
+            <th>Expression</th>
+            <th>Sentiment</th>
+          </tr>
+        </thead>
+        <tbody id="actionSentimentBody">
+          <tr id="expressionPlaceholder">
+  <td colspan="4" style="text-align:center; color:#ccc;">Output will be displayed here after uploading and processing the video.</td>
+</tr>
+
+          <!-- JS will populate rows here -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 🎥 Video Preview -->
+  <div class="glass-box-section">
+    <h3 class="transcript-title centered-title" id="previewTitle">🎥 Video Preview</h3>
+    <div class="transcript-box" id="videoContainer">
+      <p class="placeholder-text" id="videoPlaceholder">Output will be displayed here after uploading and processing the video.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 📦 10s Scene Analysis Table -->
+<div class="row-box-container">
+  <div class="glass-box-section sentiment-box">
+    <h3 class="transcript-title centered-title">📦 10s Scene Analysis Table</h3>
+    <div id="chunkAnalysisBox" class="sentiment-scroll-wrapper">
+      <table class="sentiment-table chunk-analysis-table">
+        <thead>
+          <tr>
+            <th>Start</th>
+            <th>End</th>
+            <th>Expression</th>
+            <th>Expression Sentiment</th>
+            <th>Dialogue Sentiment</th>
+            <th>People</th>
+            <th>Places</th>
+            <th>Characters</th>
+            <th>Things</th>
+            <th>Animals</th>
+            <th>Others</th>
+          </tr>
+        </thead>
+        <tbody id="chunkAnalysisBody">
+          <tr id="chunkPlaceholder">
+  <td colspan="11" style="text-align:center; color:#ccc;">Output will be displayed here after uploading and processing the video.</td>
+</tr>
+          <!-- JS will populate rows -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+  <!-- Footer -->
+<footer class="footer">
+  <div class="social-icons">
+    <a href="#"><i class="fab fa-facebook-f"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fab fa-x-twitter"></i></a>
+    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+  </div>
+  <p>© 2025 Video Transcripto — by Code Drifters</p>
+</footer>
+<script>
+const rotatingWords = ["educators", "filmmakers", "screenwriters", "researchers", "content creators"];
+let wordIndex = 0;
+
+setInterval(() => {
+  const el = document.getElementById("rotating-word");
+  wordIndex = (wordIndex + 1) % rotatingWords.length;
+  el.style.opacity = 0;
+  setTimeout(() => {
+    el.textContent = rotatingWords[wordIndex];
+    el.style.opacity = 1;
+  }, 300);
+}, 2000);
+</script>
+
+</body>
+</html>

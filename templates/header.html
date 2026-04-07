@@ -1,0 +1,15 @@
+<header class="app-header">
+  <div class="header-content">
+    <div class="title">VIDEO TRANSCRIPTO</div>
+
+    {% if session.get("user") %}
+    <div class="user-menu">
+      <i class="fas fa-user-circle user-icon" onclick="toggleDropdown()"></i>
+      <div class="dropdown-menu" id="userDropdown">
+        <a href="#"><i class="fas fa-user"></i> View Profile</a>
+        <a href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</header>

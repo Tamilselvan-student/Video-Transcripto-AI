@@ -1,0 +1,988 @@
+@font-face {
+  font-family: 'RALUWEH';
+  src: url('/static/fonts/RALUWEH.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.title {
+  font-family: 'RALUWEH', sans-serif;
+  font-size: 30px;
+  color: #fff;
+  margin-left: 0;
+  padding-left: 0;
+  flex-grow: 1; /* ⬅️ forces it to push left */
+  text-align: left;
+}
+
+.top-left-title {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-family: 'Vegan', sans-serif;
+  font-size: 28px;
+  color: white;
+}
+
+/* === GLOBAL FONT AND BACKGROUND === */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  background: transparent; /* ✅ Transparent to see video */
+  color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+
+/* === GLOBAL TEXT COLOR TO WHITE === */
+h1, h2, h3, h4, h5, h6,
+p, span, label, input, button, div {
+  color: rgb(255, 255, 255) !important;
+  .black-text {
+  color: #000000 !important;
+}
+
+}
+
+/* === MAIN PAGE CONTENT === */
+.main {
+  flex: 1;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 60px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* === HEADINGS === */
+.main-title {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 40px;
+  text-align: left;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  text-align: left;
+}
+
+/* === DROPZONE === */
+.drop-zone-veed {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px dashed #fff;
+  color: white;
+  padding: 30px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 12px;
+  transition: background 0.3s;
+}
+
+.drop-zone-veed:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.file-info {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/* === BUTTON === */
+.veed-button {
+  padding: 12px 28px;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  background-color: white;
+  color: black;
+  border: 2px solid black;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  text-transform: uppercase;
+}
+
+.veed-button:hover {
+  background-color: #f0f0f0;
+  color: black;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.veed-button:active {
+  transform: scale(0.96);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+/* === VIDEO PREVIEW BOX === */
+.right-box {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 25px;
+  width: 90%;
+  max-width: 700px;
+  margin: 40px auto;
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.placeholder-text {
+  color: #cccccc;
+  text-align: center;
+}
+
+/* === FOOTER AT BOTTOM === */
+footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9rem;
+  color: #ffffffaa;
+}
+
+/* === NEW LAYOUT STYLES === */
+.content-container {
+  display: flex;
+  gap: 30px;
+  width: 100%;
+}
+
+.left-box {
+  flex: 1;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 20px;
+  padding: 20px;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.right-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.preview-title {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+/* === RESPONSIVE ADJUSTMENTS === */
+@media (max-width: 768px) {
+  .content-container {
+    flex-direction: column;
+  }
+
+  .left-box {
+    order: 2;
+    margin-top: 20px;
+  }
+
+  .right-column {
+    order: 1;
+  }
+}
+
+.title-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  text-align: right;
+  padding: 20px;
+}
+
+.main-title {
+  margin: 0;
+  font-size: 1.5em;
+}
+
+.subtitle {
+  margin: 5px 0 0 0;
+  font-size: 0.9em;
+}
+
+/* === Download Box Styling === */
+.download-box {
+  padding: 20px;
+  min-height: auto;
+  max-width: 300px;
+  margin: 0 auto;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.download-title {
+  font-size: 1rem;
+  margin-bottom: 10px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.button-group-vertical {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.download-btn {
+  background: linear-gradient(135deg, #000000, #000000);
+  color: #fff;
+  padding: 6px 16px;
+  font-size: 0.8rem;
+  border-radius: 6px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: 0.25s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.download-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.5);
+}
+
+.transcript-section {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 25px;
+  width: 90%;
+  max-width: 700px;
+  margin: 40px auto;
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.transcript-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.transcript-box {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  min-height: 180px;
+  max-height: 500px;
+  padding: 20px 10px;
+  font-family: 'Fira Code', monospace;
+  font-size: 1rem; /* Increased from 0.9rem */
+  line-height: 2;   /* Increased for better readability */
+  background-color: rgba(20, 20, 30, 0.92);
+  border-radius: 12px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  color: #f1f1f1;
+  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+  margin: 0 10px;
+}
+
+/* Optional: Highlight timestamps (style enhancement) */
+.transcript-box strong {
+  color: #00e5ff;
+}
+
+/* Scrollbar styling */
+.transcript-box::-webkit-scrollbar {
+  width: 6px;
+}
+
+.transcript-box::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+}
+
+/* === LOGIN PAGE STYLES === */
+.login-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: transparent; /* ✅ no background override */
+}
+
+/* === Centered Elegant Login Title === */
+.login-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  margin-bottom: 30px;
+  text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.4);
+}
+
+
+.login-box {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+
+
+.login-box h2 {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.login-input {
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: rgb(255, 255, 255);
+}
+
+.login-input::placeholder {
+  color: #ddd;
+}
+
+.glass-box {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 30px 25px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+}
+/* === Alt Button (Register/Sign In link button style) === */
+.alt-button {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid white;
+  padding: 10px 25px;
+  font-size: 0.9rem;
+  border-radius: 30px;
+  display: inline-block;
+  margin-top: 5px;
+  color: white !important;
+  text-decoration: none;
+  transition: background 0.3s ease, border 0.3s ease;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.alt-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid #ffffffaa;
+}
+
+
+.logout-btn {
+  padding: 6px 14px;
+  font-size: 0.8rem;
+  border-radius: 20px;
+  background: #000;
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  border: none;
+  font-weight: 500;
+}
+.logout-btn:hover {
+  background: #111;
+}
+.input-with-icon {
+  position: relative;
+  width: 100%;
+}
+
+.input-with-icon input.login-input {
+  width: 100%;
+  padding-right: 45px; /* make space for the icon */
+  box-sizing: border-box;
+}
+
+.toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.strength-indicator {
+  font-size: 0.85rem;
+  margin: 4px 0 4px 2px;  /* 🔽 reduced bottom margin */
+  text-align: left;
+  color: #aaa;
+  min-height: 1.2rem;
+}
+.upload-note {
+  font-size: 0.85rem;
+  color: #ccc;
+  margin-top: 5px;
+}
+.upload-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.drop-zone-veed {
+  width: 100%;  /* ✅ Full width */
+  max-width: 600px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px dashed #fff;
+  padding: 30px;
+  text-align: center;
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+
+.file-info {
+  font-size: 0.9rem;
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.button-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.veed-button {
+  padding: 12px 28px;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  background: linear-gradient(90deg, #000000, #000000);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+/* Download Dropdown Styling */
+.center-download {
+  text-align: center;
+  margin-top: 15px;
+}
+.dropdown-container {
+  position: relative;
+  text-align: inline-block;
+  margin-top: 15px;
+}
+
+.dropdown-options {
+  position: absolute;
+  top: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: rgba(0, 0, 0, 0.85);
+  border-radius: 12px;
+  padding: 10px 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+  width: max-content;
+}
+
+.download-option {
+  background: none;
+  color: white;
+  padding: 6px 16px;
+  font-size: 0.9rem;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+  text-align: left;
+}
+
+.download-option:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.hidden {
+  display: none !important;
+}
+.preview-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.preview-title.centered {
+  text-align: center;
+  width: 100%;
+}
+
+.preview-title.left {
+  text-align: left;
+  width: 100%;
+  padding-left: 10px;
+}
+.sentiment-box {
+   background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 25px;
+  width: 90%;
+  max-width: 1200px;
+  margin: 40px auto;
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+.sentiment-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 0.92rem;
+}
+
+.sentiment-table thead th {
+  padding: 12px 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid #444;
+  text-align: left;
+}
+
+.sentiment-table tbody td {
+  padding: 10px;
+  border-bottom: 1px solid #333;
+  word-wrap: break-word;
+  vertical-align: top;
+}
+
+.transcript-title.centered-title {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+#sentimentBoxInner {
+  background-color: rgba(20, 20, 30, 0.92);
+  border-radius: 12px;
+  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.4);
+  max-height: 600px;
+  overflow-y: auto;
+}
+.sentiment-table th:nth-child(1),
+.sentiment-table td:nth-child(1) {
+  width: 15%; /* Minute */
+}
+
+.sentiment-table th:nth-child(2),
+.sentiment-table td:nth-child(2) {
+  width: 55%; /* Dialogues gets more space */
+}
+
+.sentiment-table th:nth-child(3),
+.sentiment-table td:nth-child(3),
+.sentiment-table th:nth-child(4),
+.sentiment-table td:nth-child(4) {
+  width: 15%;
+  text-align: center;
+}
+#bgVideo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  filter: brightness(0.4);
+}
+
+/* === GLOBAL GLASS HEADER === */
+/* Glassmorphism header */
+.app-header {
+  position: relative;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140%;
+  max-width: 1300px;
+  padding: 18px 200px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border-radius: 24px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+  z-index: 999;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between; /* Pushes title left and icon right */
+  align-items: center;
+  width: 100%;
+}
+
+/* Logo (left title) */
+.site-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: white;
+  letter-spacing: 1px;
+  margin-left: -170px; /* 🠔 Adjust this to match your 200px left padding */
+}
+
+
+/* User icon and dropdown */
+.user-menu {
+  position: relative;
+  display: inline-block;
+}
+
+.user-icon {
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: white;
+}
+
+/* Dropdown menu styles */
+.dropdown-menu {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background: rgba(0, 0, 0, 0.85);
+  border-radius: 12px;
+  padding: 10px 0;
+  display: none;
+  min-width: 160px;
+  z-index: 1000;
+}
+
+.dropdown-menu a {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  color: white; /* ✅ Text in white */
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.dropdown-menu a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.dropdown-menu i {
+  margin-right: 8px;
+}
+/* 💡 Container for transcript + sentiment side-by-side */
+/* 📦 Flex container to align boxes in a row */
+/* === GLASS FLEX CONTAINERS FOR HOME PAGE === */
+.row-box-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 30px;
+  width: 100%;
+  max-width: 1300px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.glass-box-section {
+  flex: 1 1 calc(50% - 15px); /* 2 columns with spacing */
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  min-width: 300px;
+  max-width: 700px; /* Prevent collapse */
+}
+
+/* Responsive: stack on smaller screens */
+@media (max-width: 900px) {
+  .row-box-container {
+    flex-direction: column;
+  }
+  .glass-box-section {
+    flex: 1 1 100%;
+  }
+}
+.forgot-link {
+  text-align: right;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+
+.forgot-link a {
+  font-size: 0.9rem;
+  color: #ddd;
+  text-decoration: none;
+}
+
+.forgot-link a:hover {
+  text-decoration: underline;
+  color: white;
+}
+/* 🔲 Modern Transcribe Button */
+.transcribe-button {
+  padding: 15px 25px;
+  border: unset;
+  border-radius: 15px;
+  color: #000000 !important; /* ✅ black text by default */
+  z-index: 1;
+  background: #e8e8e8 !important;
+  position: relative;
+  font-weight: 1000;
+  font-size: 17px;
+  box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+  transition: all 250ms;
+  overflow: hidden;
+}
+
+.transcribe-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+  border-radius: 15px;
+  background-color: #212121; /* black on hover */
+  z-index: -1;
+  box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+  transition: all 250ms;
+}
+
+.transcribe-button:hover {
+  color: #e8e8e8; /* white text when hovered */
+}
+
+.transcribe-button:hover::before {
+  width: 100%;
+}
+.hero-section {
+  margin-top: 150px;
+  text-align: center;
+  color: white;
+  padding: 20px;
+}
+
+.hero-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.hero-title #rotating-word {
+  color: #00e0ff;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.hero-subtext {
+  font-size: 1.1rem;
+  color: #ccc;
+  max-width: 800px;
+  margin: 10px auto;
+}
+
+.footer {
+  text-align: center;
+  padding: 20px;
+  margin-top: 50px;
+  background-color: transparent;
+  color: white;
+}
+
+.social-icons {
+  margin-bottom: 10px;
+}
+
+.social-icons a {
+  color: #999;
+  margin: 0 10px;
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #fff;
+}
+/* ... existing CSS ... */
+
+/* Progress Bar Styles */
+.progress-container {
+  width: 100%;
+  max-width: 600px; /* Match drop-zone width */
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  height: 25px;
+  margin-top: 20px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(to right, #00c6ff, #0072ff); /* Professional gradient */
+  border-radius: 10px;
+  transition: width 0.4s ease-in-out;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.progress-text {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  line-height: 25px; /* Vertically center text */
+  color: white;
+  font-weight: bold;
+  font-size: 0.9rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  z-index: 1; /* Ensure text is above the bar */
+}
+
+/* Utility class to hide/show */
+.hidden {
+  display: none !important;
+}
+/* === Facial Expression Sentiment Table (styled like Sentiment Table) === */
+.expression-table-container {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 25px;
+  width: 90%;
+  max-width: 700px; /* ⬅️ Matches sentiment-box */
+  margin: 40px auto;
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+
+.expression-table-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.expression-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.expression-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #202030;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.expression-table thead th {
+  padding: 12px 16px;
+  background-color: #292940;
+  color: #fff;
+  text-align: center;
+}
+
+.expression-table tbody td {
+  padding: 10px 16px;
+  border-top: 1px solid #333;
+  color: #ccc;
+  font-size: 14px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Optional scrollbars */
+.expression-table-wrapper::-webkit-scrollbar {
+  height: 6px;
+}
+.expression-table-wrapper::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+}
+
+/* Make 10s Scene Analysis Table responsive and visually neat */
+.chunk-analysis-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: auto;
+  font-size: 0.9rem;
+  background-color: rgba(20, 20, 30, 0.92);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.chunk-analysis-table thead th {
+  padding: 12px 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid #444;
+  text-align: center;
+}
+
+.chunk-analysis-table tbody td {
+  padding: 10px;
+  border-bottom: 1px solid #333;
+  word-wrap: break-word;
+  text-align: center;
+}
+/* 🎯 Scrollable 10s Scene Table Container like Sentiment Box */
+.sentiment-scroll-wrapper {
+  background-color: rgba(20, 20, 30, 0.92);
+  border-radius: 12px;
+  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.4);
+  max-height: 500px;  /* ✅ Medium box height */
+  overflow-y: auto;
+  overflow-x: auto;
+  width: 100%;
+}
